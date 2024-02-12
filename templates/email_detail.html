@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Details - CRM Tool</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script>
+      function analyzeSentiment(emailContent) {
+        console.log("analyzeSentiment called with:", emailContent);
+        fetch("/analyze_sentiment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ email_content: emailContent }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Sentiment analysis response:", data); // Log the response
+            document.getElementById("sentimentResult").innerText =
+              "Sentiment: " + data.sentiment;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            document.getElementById("sentimentResult").innerText =
+              "Error analyzing sentiment";
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+          class="sidebar-logo"
+          onclick="location.href='{{ url_for('index') }}';"
+        />
+        <input type="text" class="search-bar" placeholder="Search..." />
+        <div class="ml-auto">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user"></i>
+            </button>
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button
+        class="btn btn-primary btn-compose"
+        onclick="location.href='{{ url_for('add_query') }}';"
+      >
+        ADD
+      </button>
+      <!-- Other sidebar content -->
+    </div>
+
+    <!-- Main content area for email details -->
+    <div class="content email-details" style="margin-top: 60px">
+      <div class="email-header">
+        <h3>{{ email.email_title }}</h3>
+        <p><strong>Sender Name:</strong> {{ email.sender_name }}</p>
+        <p>
+          <strong>Sender Email:</strong>
+          <!-- Placeholder for sender email -->
+        </p>
+        <p><strong>Time Stamp:</strong> {{ email.timestamp }}</p>
+      </div>
+      <div class="email-body">
+        <p>{{ email.email_content }}</p>
+      </div>
+
+      <!-- Buttons for email processing -->
+      <div class="email-actions">
+        <button
+          class="btn btn-info"
+          onclick="analyzeSentiment('{{ email.email_content | tojson | safe }}')"
+        >
+          Analyze Sentiment
+        </button>
+      </div>
+
+      <!-- Result area for sentiment analysis -->
+      <div class="email-results mt-3">
+        <p id="sentimentResult"></p>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

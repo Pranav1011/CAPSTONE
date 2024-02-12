@@ -1,0 +1,135 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar {
+  background-color: #f8f9fa;
+  height: 100vh;
+  width: 150px;
+  position: fixed;
+  left: 0;
+  top: 60px; /* Adjust top to the height of the navbar */
+  overflow-x: hidden;
+  padding-top: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar logo */
+.sidebar-logo {
+  width: 70px;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+/* Compose button */
+.btn-compose {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 20px;
+}
+
+/* Content area styling */
+.content {
+  margin-left: 150px;
+  padding: 20px;
+  margin-top: 70px;
+}
+
+/* Navbar styling */
+.navbar {
+  margin-bottom: 20px;
+  height: 60px;
+  padding: 0 20px;
+  z-index: 1030; /* Ensure the navbar is above other content */
+}
+
+/* Search bar styling */
+.search-bar {
+  width: calc(75%);
+  border: 1px solid #dcdcdc;
+  padding: 10px 15px;
+  font-size: 14px;
+  margin-left: 50px;
+  margin-right: 210px;
+  border-radius: 20px;
+}
+
+/* Table styling */
+.table-hover tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table thead th {
+  border: none;
+}
+
+.table tbody td {
+  border: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.navbar .dropdown-toggle {
+  background: transparent;
+  border: none;
+  color: #333; /* Change as per your color scheme */
+}
+
+.navbar .dropdown-toggle:focus {
+  box-shadow: none;
+}
+
+.navbar .dropdown-menu {
+  right: 0; /* Align to the right */
+  left: auto;
+}
+
+.navbar .dropdown-menu a {
+  color: #333; /* Change as per your color scheme */
+}
+/* Style for the Add Query form */
+.add-query {
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 30px; /* Spacing from the top of the content area */
+}
+
+/* Style for form inputs and labels */
+.add-query .form-group label {
+  font-weight: bold;
+}
+
+.add-query .form-control {
+  border-radius: 20px; /* Rounded corners for inputs */
+}
+
+/* Style for the Add button */
+.add-query .btn-primary {
+  border-radius: 20px; /* Rounded corners for button */
+  background-color: #007bff; /* Bootstrap primary color */
+  border-color: #007bff;
+}
+
+/* Adjust the margin or padding of the form elements as needed */
+.add-query .form-group {
+  margin-bottom: 15px;
+}

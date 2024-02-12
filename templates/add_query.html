@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Query - CRM Tool</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/Style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Navbar with search bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        <img
+          src="{{ url_for('static', filename='images/logo.png') }}"
+          alt="Logo"
+          class="sidebar-logo"
+          onclick="location.href='{{ url_for('index') }}';"
+        />
+        <input type="text" class="search-bar" placeholder="Search..." />
+        <div class="ml-auto">
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="fas fa-user"></i>
+            </button>
+            <div
+              class="dropdown-menu dropdown-menu-right"
+              aria-labelledby="dropdownMenuButton"
+            >
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button class="btn btn-primary btn-compose">ADD</button>
+      <!-- Additional sidebar content can go here -->
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <div class="add-query">
+              <h1 class="text-center mt-5">Add Query</h1>
+              <form method="POST" action="{{ url_for('add_query') }}">
+                <div class="form-group">
+                  <label for="customerEmail">Customer Email:</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="customerEmail"
+                    name="customerEmail"
+                    placeholder="Enter customer email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="customerName">Customer Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="customerName"
+                    name="customerName"
+                    placeholder="Enter customer name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="emailTitle">Email Title:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="emailTitle"
+                    name="emailTitle"
+                    placeholder="Enter email title"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="emailContent">Email Content:</label>
+                  <textarea
+                    class="form-control"
+                    id="emailContent"
+                    name="emailContent"
+                    rows="3"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="sentTime">Sent Time:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="sentTime"
+                    name="sentTime"
+                    placeholder="Enter sent time"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                  Add
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
