@@ -1,135 +1,92 @@
-body {
-  font-family: "Arial", sans-serif;
+/* Global Styles */
+body, h1, h2, h3, h4, h5, h6, p, a, input, button {
+  font-family: 'Roboto', sans-serif;
 }
 
-/* Sidebar styling */
-.sidebar {
-  background-color: #f8f9fa;
-  height: 100vh;
-  width: 150px;
-  position: fixed;
-  left: 0;
-  top: 60px; /* Adjust top to the height of the navbar */
-  overflow-x: hidden;
-  padding-top: 20px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-}
-
-/* Sidebar logo */
-.sidebar-logo {
-  width: 70px;
-  height: auto;
-  display: block;
-  cursor: pointer;
-}
-
-/* Compose button */
-.btn-compose {
-  display: block;
-  width: 90%;
-  margin: 10px auto;
-  border-radius: 20px;
-}
-
-/* Content area styling */
-.content {
-  margin-left: 150px;
-  padding: 20px;
-  margin-top: 70px;
-}
-
-/* Navbar styling */
+/* Navbar Customization */
 .navbar {
-  margin-bottom: 20px;
-  height: 60px;
-  padding: 0 20px;
-  z-index: 1030; /* Ensure the navbar is above other content */
+  background-color: #fff; /* White background for a clean look */
+  box-shadow: 0 2px 4px rgba(0,0,0,.1); /* Soft shadow for depth */
 }
 
-/* Search bar styling */
-.search-bar {
-  width: calc(75%);
-  border: 1px solid #dcdcdc;
-  padding: 10px 15px;
-  font-size: 14px;
-  margin-left: 50px;
-  margin-right: 210px;
-  border-radius: 20px;
+.navbar-brand img {
+  max-height: 50px; /* Adjust logo size */
+  margin-left: 0;
 }
 
-/* Table styling */
+.form-inline .form-control {
+  border-radius: 20px; /* Rounded borders for the search bar */
+}
+
+/* Sidebar Styling */
+#sidebar-wrapper {
+  min-height: 100vh; /* Full height sidebar */
+  width: 250px; /* Sidebar width */
+  background-color: #f8f9fa; /* Light grey background */
+}
+
+.sidebar-heading {
+  padding: 0.875rem 1.25rem; /* Sidebar heading padding */
+  font-size: 1.2rem; /* Sidebar heading font size */
+  font-weight: bold; /* Bold sidebar headings */
+}
+
+.list-group-item-action {
+  color: #333; /* Dark grey color for list items */
+  font-weight: 500; /* Medium font weight for list items */
+}
+
+.list-group-item-action:hover, .list-group-item-action:focus {
+  color: #0056b3; /* Highlight color on hover/focus */
+  background-color: #e9ecef; /* Light grey background on hover/focus */
+}
+
+/* Content Styling */
+#page-content-wrapper {
+  width: 100%;
+  padding: 20px; /* Padding around page content */
+}
+
+.table-responsive {
+  background-color: #fff; /* White background for tables */
+  box-shadow: 0 0 15px rgba(0,0,0,.05); /* Soft shadow for depth */
+  border-radius: 0.25rem; /* Slightly rounded corners for tables */
+}
+
 .table-hover tbody tr:hover {
-  background-color: #f5f5f5;
+  background-color: #f4f4f4; /* Light grey background on row hover */
 }
 
-.table thead th {
-  border: none;
+/* Button Customizations */
+.btn-danger {
+  color: #fff; /* White text color */
+  background-color: #dc3545; /* Bootstrap red */
+  border-color: #dc3545; /* Bootstrap red border */
 }
 
-.table tbody td {
-  border: none;
+.btn-danger:hover {
+  background-color: #c82333; /* Darker red on hover */
+  border-color: #bd2130; /* Darker red border on hover */
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 10px;
+.btn-sm {
+  padding: .25rem .5rem; /* Smaller padding for small buttons */
+  font-size: .875rem; /* Smaller font size for small buttons */
+  border-radius: .2rem; /* Slightly rounded corners for small buttons */
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  #sidebar-wrapper {
+    width: 100px; /* Reduce sidebar width on smaller screens */
+  }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
+  .sidebar-heading, .list-group-item {
+    text-align: center; /* Center align sidebar text for small screens */
+    font-size: smaller; /* Smaller text size for compact view */
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-.navbar .dropdown-toggle {
-  background: transparent;
-  border: none;
-  color: #333; /* Change as per your color scheme */
-}
-
-.navbar .dropdown-toggle:focus {
-  box-shadow: none;
-}
-
-.navbar .dropdown-menu {
-  right: 0; /* Align to the right */
-  left: auto;
-}
-
-.navbar .dropdown-menu a {
-  color: #333; /* Change as per your color scheme */
-}
-/* Style for the Add Query form */
-.add-query {
-  background: #fff;
-  padding: 20px;
-  border-radius: 4px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 30px; /* Spacing from the top of the content area */
-}
-
-/* Style for form inputs and labels */
-.add-query .form-group label {
-  font-weight: bold;
-}
-
-.add-query .form-control {
-  border-radius: 20px; /* Rounded corners for inputs */
-}
-
-/* Style for the Add button */
-.add-query .btn-primary {
-  border-radius: 20px; /* Rounded corners for button */
-  background-color: #007bff; /* Bootstrap primary color */
-  border-color: #007bff;
-}
-
-/* Adjust the margin or padding of the form elements as needed */
-.add-query .form-group {
-  margin-bottom: 15px;
+  #page-content-wrapper {
+    padding: 10px; /* Smaller padding for page content on small screens */
+  }
 }

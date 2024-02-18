@@ -14,105 +14,127 @@
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
+      href="{{ url_for('static', filename='css/Style.css') }}"
     />
     <script>
       function analyzeSentiment(emailContent) {
-        console.log("analyzeSentiment called with:", emailContent);
-        fetch("/analyze_sentiment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({ email_content: emailContent }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Sentiment analysis response:", data); // Log the response
-            document.getElementById("sentimentResult").innerText =
-              "Sentiment: " + data.sentiment;
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-            document.getElementById("sentimentResult").innerText =
-              "Error analyzing sentiment";
-          });
+        console.log("Analyze Sentiment called with:", emailContent);
+        // Sentiment Analysis API Call (Placeholder)
+      }
+
+      function summarizeQuery(emailContent) {
+        console.log("Summarize Query called with:", emailContent);
+        // Query Summarization API Call (Placeholder)
+      }
+
+      function classifyQuery(emailContent) {
+        console.log("Classify Query called with:", emailContent);
+        // Query Classification API Call (Placeholder)
+      }
+
+      function autoReply(emailContent) {
+        console.log("Auto Reply called with:", emailContent);
+        // Auto Reply API Call (Placeholder)
       }
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <img
-          src="{{ url_for('static', filename='images/logo.png') }}"
-          alt="Logo"
-          class="sidebar-logo"
-          onclick="location.href='{{ url_for('index') }}';"
-        />
-        <input type="text" class="search-bar" placeholder="Search..." />
-        <div class="ml-auto">
-          <div class="dropdown">
-            <button
-              class="btn btn-secondary dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="fas fa-user"></i>
-            </button>
-            <div
-              class="dropdown-menu dropdown-menu-right"
-              aria-labelledby="dropdownMenuButton"
-            >
-              <a class="dropdown-item" href="#">Settings</a>
-              <a class="dropdown-item" href="#">Logout</a>
-            </div>
-          </div>
+        <a class="navbar-brand" href="{{ url_for('index') }}">
+          <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Logo"
+          />
+        </a>
+        <div class="collapse navbar-collapse">
+          <form class="form-inline my-2 my-lg-0 ml-auto">
+            <input
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+          </form>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-user"></i>
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="navbarDropdown"
+              >
+                <a class="dropdown-item" href="{{ url_for('settings') }}">Settings</a>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <button
-        class="btn btn-primary btn-compose"
-        onclick="location.href='{{ url_for('add_query') }}';"
-      >
-        ADD
-      </button>
-      <!-- Other sidebar content -->
-    </div>
-
-    <!-- Main content area for email details -->
-    <div class="content email-details" style="margin-top: 60px">
-      <div class="email-header">
-        <h3>{{ email.email_title }}</h3>
-        <p><strong>Sender Name:</strong> {{ email.sender_name }}</p>
-        <p>
-          <strong>Sender Email:</strong>
-          <!-- Placeholder for sender email -->
-        </p>
-        <p><strong>Time Stamp:</strong> {{ email.timestamp }}</p>
-      </div>
-      <div class="email-body">
-        <p>{{ email.email_content }}</p>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">CRM Dashboard</div>
+        <div class="list-group list-group-flush">
+          <a href="{{ url_for('index') }}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+          <a href="{{ url_for('add_query') }}" class="list-group-item list-group-item-action bg-light">Add Query</a>
+          <!-- Additional Links -->
+        </div>
       </div>
 
-      <!-- Buttons for email processing -->
-      <div class="email-actions">
-        <button
-          class="btn btn-info"
-          onclick="analyzeSentiment('{{ email.email_content | tojson | safe }}')"
-        >
-          Analyze Sentiment
-        </button>
-      </div>
-
-      <!-- Result area for sentiment analysis -->
-      <div class="email-results mt-3">
-        <p id="sentimentResult"></p>
+    <!-- Content Area -->
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Email Details -->
+          <div class="card">
+            <div class="card-header">Email Details</div>
+            <div class="card-body">
+              <h5 class="card-title">{{ email.title }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Sender: {{ email.cus_name }} | Date: {{ email.date }}
+              </h6>
+              <p class="card-text">{{ email.email_content }}</p>
+              <button
+                class="btn btn-primary"
+                onclick="analyzeSentiment('{{ email.email_content | tojson | safe }}')"
+              >
+                Analyze Sentiment
+              </button>
+              <button
+                class="btn btn-secondary"
+                onclick="summarizeQuery('{{ email.email_content | tojson | safe }}')"
+              >
+                Query Summarization
+              </button>
+              <button
+                class="btn btn-info"
+                onclick="classifyQuery('{{ email.email_content | tojson | safe }}')"
+              >
+                Query Classification
+              </button>
+              <button
+                class="btn btn-success"
+                onclick="autoReply('{{ email.email_content | tojson | safe }}')"
+              >
+                Auto Reply
+              </button>
+            </div>
+          </div>
+          <!-- Result Area -->
+          <div class="mt-3" id="resultArea"></div>
+        </div>
       </div>
     </div>
 
